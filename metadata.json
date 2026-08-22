@@ -1,0 +1,6 @@
+{
+  "name": "PhishGuard",
+  "description": "Real-time heuristic & AI-powered Phishing Scam & Fraud Detection platform featuring URL forensics, email analysis, live threat intelligence, community reports, and awareness center.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
