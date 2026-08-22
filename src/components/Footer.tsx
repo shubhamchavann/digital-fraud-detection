@@ -1,29 +1,27 @@
 import React from 'react';
 import { 
   ShieldCheck, AlertOctagon, ExternalLink, PhoneCall, 
-  Globe, LifeBuoy, QrCode, Smartphone 
+  Globe, LifeBuoy 
 } from 'lucide-react';
 
 interface FooterProps {
   onOpenEducation: () => void;
   onOpenHelplines: () => void;
-  onOpenShareDevice: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ 
   onOpenEducation, 
-  onOpenHelplines,
-  onOpenShareDevice
+  onOpenHelplines
 }) => {
   return (
-    <footer className="w-full border-t border-white/10 glass-panel mt-16 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <footer className="w-full border-t border-white/10 glass-panel mt-12 sm:mt-16 py-8 sm:py-12">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         
         {/* Official Emergency Cyber Crime Portals & Numbers Banner */}
-        <div className="glass-panel p-6 rounded-3xl border border-cyan-500/30 space-y-4">
+        <div className="glass-panel p-4 sm:p-6 rounded-3xl border border-cyan-500/30 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+              <div className="p-2 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 shrink-0">
                 <PhoneCall className="w-4 h-4" />
               </div>
               <div>
@@ -38,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({
 
             <button
               onClick={onOpenHelplines}
-              className="px-4 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-semibold flex items-center gap-1.5 self-start sm:self-auto transition-all cursor-pointer"
+              className="px-3.5 py-2 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-semibold flex items-center gap-1.5 self-start sm:self-auto transition-all cursor-pointer"
             >
               <span>View Full Directory</span>
               <ExternalLink className="w-3 h-3" />
@@ -56,7 +54,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <span className="text-[10px] font-mono bg-emerald-950 text-emerald-300 px-1.5 py-0.5 rounded">24x7</span>
               </div>
               <p className="text-slate-400 text-[11px]">National Cyber Crime Reporting</p>
-              <div className="flex items-center justify-between pt-1 font-mono text-[11px]">
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 font-mono text-[11px]">
                 <a href="tel:1930" className="text-emerald-400 font-bold hover:underline">
                   📞 1930 (Helpline)
                 </a>
@@ -76,7 +74,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <span className="text-[10px] font-mono bg-cyan-950 text-cyan-300 px-1.5 py-0.5 rounded">Official</span>
               </div>
               <p className="text-slate-400 text-[11px]">Federal Trade Commission & IC3</p>
-              <div className="flex items-center justify-between pt-1 font-mono text-[11px]">
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 font-mono text-[11px]">
                 <a href="tel:18773824357" className="text-emerald-400 font-bold hover:underline">
                   📞 1-877-FTC-HELP
                 </a>
@@ -96,7 +94,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <span className="text-[10px] font-mono bg-blue-950 text-blue-300 px-1.5 py-0.5 rounded">Action Fraud</span>
               </div>
               <p className="text-slate-400 text-[11px]">National Fraud & Cyber Crime</p>
-              <div className="flex items-center justify-between pt-1 font-mono text-[11px]">
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 font-mono text-[11px]">
                 <a href="tel:03001232040" className="text-emerald-400 font-bold hover:underline">
                   📞 0300 123 2040
                 </a>
@@ -116,11 +114,11 @@ export const Footer: React.FC<FooterProps> = ({
                 <span className="text-[10px] font-mono bg-purple-950 text-purple-300 px-1.5 py-0.5 rounded">ACSC / CAFC</span>
               </div>
               <p className="text-slate-400 text-[11px]">National Cyber Security Centres</p>
-              <div className="flex items-center justify-between pt-1 font-mono text-[11px]">
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 font-mono text-[11px]">
                 <a href="tel:1300292371" className="text-emerald-400 font-bold hover:underline">
                   📞 1300 CYBER1
                 </a>
-                <a href="https://www.cyber.gov.au" target="_blank" rel="noopener noreferrer" className="text-cyan-300 hover:underline flex items-center gap-0.5">
+                <a href="https://cyber.gov.au" target="_blank" rel="noopener noreferrer" className="text-cyan-300 hover:underline flex items-center gap-0.5">
                   <span>cyber.gov.au</span>
                 </a>
               </div>
@@ -129,9 +127,9 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Emergency Incident Response Box */}
-        <div className="glass-panel-danger p-6 rounded-3xl border border-rose-500/30 space-y-3">
+        <div className="glass-panel-danger p-4 sm:p-6 rounded-3xl border border-rose-500/30 space-y-3">
           <div className="flex items-center gap-2 text-rose-400 font-bold text-sm">
-            <AlertOctagon className="w-5 h-5" />
+            <AlertOctagon className="w-5 h-5 shrink-0" />
             <span>Emergency Incident Protocol: Did You Already Click or Submit Data to a Phish?</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs text-slate-200">
@@ -155,25 +153,17 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Links and Disclaimers */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-4 border-t border-white/5 text-xs text-slate-400">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/5 text-xs text-slate-400">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-cyan-400" />
+              <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
               <span className="font-bold text-white font-display">PHISHGUARD SENTINEL</span>
             </div>
             <span className="text-slate-600">|</span>
-            <span className="font-mono text-[11px]">Real-Time Cyber Threat Defense Engine</span>
+            <span className="font-mono text-[11px]">Real-Time Threat Intelligence</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 font-mono text-[11px]">
-            <button
-              onClick={onOpenShareDevice}
-              className="text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer flex items-center gap-1.5"
-            >
-              <Smartphone className="w-3.5 h-3.5" />
-              <span>Open on Phone / Other Device</span>
-            </button>
-
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-5 font-mono text-[11px]">
             <button
               onClick={onOpenEducation}
               className="text-slate-400 hover:text-cyan-300 transition-colors cursor-pointer"

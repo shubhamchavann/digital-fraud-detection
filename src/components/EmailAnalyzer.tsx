@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { 
   Mail, ShieldAlert, ShieldCheck, AlertTriangle, Sparkles, Terminal, 
-  Copy, Check, RefreshCw, Download, CornerDownRight, CheckCircle2, 
-  XCircle, Zap, UserX, DollarSign, Clock, FileText 
+  Copy, Check, RefreshCw, CornerDownRight, CheckCircle2, 
+  Zap, Clock 
 } from 'lucide-react';
 import { ScanResult } from '../types';
 import { api } from '../services/api';
@@ -105,7 +105,7 @@ Flags Count: ${scanResult.flags.length}
   return (
     <div id="email-analyzer-section" className="space-y-6">
       {/* Header Panel */}
-      <div className="glass-panel-elevated p-6 md:p-8 rounded-3xl border border-white/10 relative overflow-hidden shadow-2xl">
+      <div className="glass-panel-elevated p-5 sm:p-7 md:p-8 rounded-3xl border border-white/10 relative overflow-hidden shadow-2xl">
         <div className="relative z-10 space-y-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
             <div>
@@ -113,10 +113,10 @@ Flags Count: ${scanResult.flags.length}
                 <Mail className="w-3.5 h-3.5" />
                 <span>SOCIAL ENGINEERING FORENSICS</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight font-display">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight font-display">
                 Email, SMS & Scareware Text Analyzer
               </h2>
-              <p className="text-slate-400 text-sm">
+              <p className="text-slate-400 text-xs sm:text-sm mt-1">
                 Paste suspicious emails, SMS messages, or scareware renewal notices to detect psychological urgency triggers, spoofed sender domains, and financial extortion.
               </p>
             </div>
@@ -125,7 +125,7 @@ Flags Count: ${scanResult.flags.length}
           {/* Quick Presets */}
           <div className="pt-2">
             <div className="flex items-center gap-2 text-xs text-slate-400 mb-2">
-              <Terminal className="w-3.5 h-3.5 text-cyan-400" />
+              <Terminal className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
               <span>Common Scam Presets (Click to Load):</span>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -140,14 +140,14 @@ Flags Count: ${scanResult.flags.length}
                     setContent(preset.content);
                     handleAnalyze(preset);
                   }}
-                  className={`text-xs px-3 py-1.5 rounded-xl border transition-all cursor-pointer flex items-center gap-1.5 ${
+                  className={`text-xs px-2.5 sm:px-3 py-1.5 rounded-xl border transition-all cursor-pointer flex items-center gap-1.5 ${
                     preset.type === 'threat'
                       ? 'bg-rose-950/40 border-rose-500/30 text-rose-300 hover:bg-rose-900/50 hover:border-rose-500/50'
                       : 'bg-emerald-950/40 border-emerald-500/30 text-emerald-300 hover:bg-emerald-900/50 hover:border-emerald-500/50'
                   }`}
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-current" />
-                  <span>{preset.label}</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-current shrink-0" />
+                  <span className="truncate">{preset.label}</span>
                 </button>
               ))}
             </div>
@@ -212,7 +212,7 @@ Flags Count: ${scanResult.flags.length}
               </div>
             )}
 
-            <div className="flex justify-end gap-2 pt-1">
+            <div className="flex flex-wrap items-center justify-end gap-2 pt-1">
               <button
                 id="btn-clear-email"
                 type="button"
@@ -222,7 +222,7 @@ Flags Count: ${scanResult.flags.length}
                   setContent('');
                   setScanResult(null);
                 }}
-                className="px-4 py-2 rounded-xl text-xs text-slate-400 hover:text-white bg-slate-900 border border-white/5 cursor-pointer"
+                className="px-4 py-2.5 rounded-xl text-xs text-slate-400 hover:text-white bg-slate-900 border border-white/5 cursor-pointer"
               >
                 Clear
               </button>
@@ -231,7 +231,7 @@ Flags Count: ${scanResult.flags.length}
                 id="btn-execute-email-scan"
                 type="submit"
                 disabled={isScanning}
-                className="flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-xs text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_20px_rgba(6,182,212,0.4)] disabled:opacity-50 cursor-pointer"
+                className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-xs text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_20px_rgba(6,182,212,0.4)] disabled:opacity-50 cursor-pointer transition-all"
               >
                 {isScanning ? (
                   <>
@@ -259,15 +259,15 @@ Flags Count: ${scanResult.flags.length}
           className="space-y-6"
         >
           {/* Main Verdict Header */}
-          <div className={`p-6 md:p-8 rounded-3xl border ${
+          <div className={`p-5 sm:p-7 md:p-8 rounded-3xl border ${
             scanResult.verdict === 'Dangerous'
               ? 'glass-panel-danger glow-danger border-rose-500/40'
               : scanResult.verdict === 'Suspicious'
               ? 'glass-panel-warning border-amber-500/40'
               : 'glass-panel-safe glow-safe border-emerald-500/40'
           }`}>
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-              <div className="space-y-2 flex-1">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6">
+              <div className="space-y-2 flex-1 min-w-0">
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold font-mono uppercase ${
                   scanResult.verdict === 'Dangerous'
                     ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
@@ -275,27 +275,27 @@ Flags Count: ${scanResult.flags.length}
                     ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
                     : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
                 }`}>
-                  {scanResult.verdict === 'Dangerous' ? <ShieldAlert className="w-4 h-4" /> : <ShieldCheck className="w-4 h-4" />}
+                  {scanResult.verdict === 'Dangerous' ? <ShieldAlert className="w-4 h-4 shrink-0" /> : <ShieldCheck className="w-4 h-4 shrink-0" />}
                   <span>{scanResult.verdict.toUpperCase()} THREAT VERDICT</span>
                 </span>
-                <h3 className="text-2xl font-bold text-white font-display">
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
                   {scanResult.threatCategory}
                 </h3>
               </div>
 
               {/* Urgency and Risk Score Badges */}
-              <div className="flex items-center gap-3">
-                <div className="bg-slate-950/80 p-3.5 rounded-2xl border border-white/10 text-center min-w-[100px]">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
+                <div className="bg-slate-950/80 p-3 sm:p-3.5 rounded-2xl border border-white/10 text-center flex-1 sm:flex-initial sm:min-w-[100px]">
                   <p className="text-[10px] text-slate-400 font-mono uppercase">Risk Score</p>
-                  <p className="text-2xl font-black text-white font-display leading-none mt-1">
+                  <p className="text-xl sm:text-2xl font-black text-white font-display leading-none mt-1">
                     {scanResult.riskScore}<span className="text-xs text-slate-500 font-normal">/100</span>
                   </p>
                 </div>
 
                 {scanResult.emailForensics && (
-                  <div className="bg-slate-950/80 p-3.5 rounded-2xl border border-white/10 text-center min-w-[100px]">
+                  <div className="bg-slate-950/80 p-3 sm:p-3.5 rounded-2xl border border-white/10 text-center flex-1 sm:flex-initial sm:min-w-[100px]">
                     <p className="text-[10px] text-slate-400 font-mono uppercase">Urgency Meter</p>
-                    <p className={`text-2xl font-black font-display leading-none mt-1 ${
+                    <p className={`text-xl sm:text-2xl font-black font-display leading-none mt-1 ${
                       scanResult.emailForensics.urgencyScore > 60 ? 'text-rose-400' : 'text-amber-400'
                     }`}>
                       {scanResult.emailForensics.urgencyScore}%
@@ -305,11 +305,11 @@ Flags Count: ${scanResult.flags.length}
               </div>
             </div>
 
-            <div className="flex justify-end gap-2 pt-4 mt-4 border-t border-white/10">
+            <div className="flex justify-end gap-2 pt-3.5 mt-3.5 border-t border-white/10">
               <button
                 id="btn-copy-email-report"
                 onClick={handleCopyReport}
-                className="flex items-center gap-1.5 px-3.5 py-1.8 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-300 text-xs border border-white/10 transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-300 text-xs border border-white/10 transition-all cursor-pointer"
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copied ? 'Report Copied' : 'Copy Forensics'}</span>
@@ -319,30 +319,30 @@ Flags Count: ${scanResult.flags.length}
 
           {/* Psychological Threat Tactics Grid */}
           {scanResult.emailForensics && (
-            <div className="glass-panel p-6 rounded-3xl border border-white/10 space-y-4">
-              <h4 className="text-sm font-bold text-white font-display flex items-center gap-2">
-                <Clock className="w-4 h-4 text-cyan-400" />
+            <div className="glass-panel p-5 sm:p-6 rounded-3xl border border-white/10 space-y-4">
+              <h4 className="text-xs sm:text-sm font-bold text-white font-display flex items-center gap-2">
+                <Clock className="w-4 h-4 text-cyan-400 shrink-0" />
                 <span>Detected Persuasion & Social Engineering Tactics</span>
               </h4>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
                 <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-white/5">
                   <span className="text-[10px] text-slate-400 uppercase font-mono">Impersonated Entity</span>
-                  <p className="text-sm font-bold text-white mt-1">
+                  <p className="text-xs sm:text-sm font-bold text-white mt-1 truncate">
                     {scanResult.emailForensics.impersonationTarget || 'Generic Spoof'}
                   </p>
                 </div>
 
                 <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-white/5">
                   <span className="text-[10px] text-slate-400 uppercase font-mono">Scam Classification</span>
-                  <p className="text-sm font-bold text-cyan-300 mt-1">
+                  <p className="text-xs sm:text-sm font-bold text-cyan-300 mt-1 truncate">
                     {scanResult.emailForensics.scamCategory}
                   </p>
                 </div>
 
                 <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-white/5">
-                  <span className="text-[10px] text-slate-400 uppercase font-mono">Sender Webmail Anomaly</span>
-                  <p className={`text-sm font-bold mt-1 ${
+                  <span className="text-[10px] text-slate-400 uppercase font-mono">Sender Anomaly</span>
+                  <p className={`text-xs sm:text-sm font-bold mt-1 truncate ${
                     scanResult.emailForensics.senderAnomaly ? 'text-rose-400' : 'text-slate-300'
                   }`}>
                     {scanResult.emailForensics.senderAnomaly ? 'Spoofed Domain' : 'Consistent'}
@@ -373,17 +373,17 @@ Flags Count: ${scanResult.flags.length}
 
           {/* AI Forensic Commentary */}
           {scanResult.aiForensics && (
-            <div className="glass-panel p-6 rounded-3xl border border-cyan-500/30 space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-cyan-400 font-semibold text-sm">
-                  <Sparkles className="w-4 h-4" />
+            <div className="glass-panel p-5 sm:p-6 rounded-3xl border border-cyan-500/30 space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-2 text-cyan-400 font-semibold text-xs sm:text-sm">
+                  <Sparkles className="w-4 h-4 shrink-0" />
                   <span>Gemini AI Linguistic Threat Breakdown</span>
                 </div>
-                <span className="text-[11px] font-mono text-slate-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/20">
+                <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/20">
                   Confidence: {scanResult.aiForensics.confidence}%
                 </span>
               </div>
-              <p className="text-slate-300 text-sm leading-relaxed">
+              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
                 {scanResult.aiForensics.explanation}
               </p>
               
@@ -391,7 +391,7 @@ Flags Count: ${scanResult.flags.length}
                 <span className="text-xs font-semibold text-slate-400 uppercase font-mono">Protective Protocol:</span>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-slate-300">
                   {scanResult.aiForensics.recommendedActions.map((action, i) => (
-                    <li key={i} className="flex items-start gap-2 bg-slate-900/60 p-2 rounded-xl border border-white/5">
+                    <li key={i} className="flex items-start gap-2 bg-slate-900/60 p-2.5 rounded-xl border border-white/5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
                       <span>{action}</span>
                     </li>
@@ -402,9 +402,9 @@ Flags Count: ${scanResult.flags.length}
           )}
 
           {/* Itemized Red Flags */}
-          <div className="glass-panel p-6 rounded-3xl border border-white/10 space-y-4">
-            <h4 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-              <ShieldAlert className="w-4 h-4 text-rose-400" />
+          <div className="glass-panel p-5 sm:p-6 rounded-3xl border border-white/10 space-y-4">
+            <h4 className="text-xs sm:text-sm font-semibold text-slate-200 flex items-center gap-2">
+              <ShieldAlert className="w-4 h-4 text-rose-400 shrink-0" />
               <span>Red Flags & Rule Violations ({scanResult.flags.length})</span>
             </h4>
 
@@ -412,7 +412,7 @@ Flags Count: ${scanResult.flags.length}
               {scanResult.flags.map((flag) => (
                 <div
                   key={flag.id}
-                  className="bg-slate-950/70 p-4 rounded-2xl border border-white/5 space-y-1.5"
+                  className="bg-slate-950/70 p-3.5 sm:p-4 rounded-2xl border border-white/5 space-y-1.5"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-white">{flag.title}</span>
